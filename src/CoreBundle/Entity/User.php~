@@ -1,0 +1,71 @@
+<?php
+
+namespace CoreBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="USER")
+ * @ORM\Entity(repositoryClass="CoreBundle\Repository\UserRepository")
+ */
+class User
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="USER_FIRSTNAME", type="string", length=20)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="USER_LASTNAME", type="string", length=20)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="USER_EMAIL", type="string", length=50, unique=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="USER_PASSWORD", type="string", length=50)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="USER_TOKEN", type="string", length=255)
+     */
+    private $token;
+         
+ 
+    /**
+     * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Sender",mappedBy="user",cascade={"persist","remove"})
+     */
+    private $sender;
+
+     /**
+     * @ORM\OneToMany(targetEntity="CoreBundle\Entity\Receiver",mappedBy="user",cascade={"persist","remove"})
+     */
+    private $receiver;
+
+   
+}

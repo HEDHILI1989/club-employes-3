@@ -1,0 +1,12 @@
+services:
+
+  core.service.shared.tools:
+    class: CoreBundle\Service\Shared\ToolsService
+
+  core.service.user:
+    class: CoreBundle\Service\UserService  
+    arguments: ['@doctrine.orm.entity_manager', '@core.service.shared.tools']
+
+  core.service.invitation:
+    class: CoreBundle\Service\InvitationService  
+    arguments: ['@doctrine.orm.entity_manager', '@core.service.shared.tools']  
